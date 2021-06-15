@@ -1,0 +1,84 @@
+.overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.4);
+   z-index: -1;
+   opacity: 0;
+   transition: 0.5s ease-out;
+   @media (max-width: 1199px) {
+      &.active {
+         z-index: 50;
+         opacity: 1;
+         transition: 0.5s ease-in-out 0.2s;
+      }
+   }
+}
+
+.btn {
+   padding: 5px 10px;
+   background-color: $primaryColor;
+   color: white;
+   border-radius: 6px;
+   transition: background-color 0.4s;
+   &:hover {
+      background-color: darken($primaryColor, 5);
+   }
+   &.active {
+      span {
+         &:first-child {
+            display: none;
+         }
+         &:last-child {
+            display: block;
+         }
+      }
+   }
+   span:last-child {
+      display: none;
+   }
+
+   @media (max-width: 991px) {
+      margin-right: 15px;
+   }
+}
+
+.status {
+   $statues: (
+      "delivered": #8de02c,
+      "pending": #f9ca3f,
+      "return": rgb(243, 53, 53),
+      "inprogress": #1795ce,
+   );
+   padding: 2px 4px;
+   background-color: blueviolet;
+   color: white;
+   border-radius: 4px;
+   font-size: 14px;
+   letter-spacing: 1px;
+   @each $key, $value in $statues {
+      &.#{$key} {
+         background-color: $value;
+      }
+   }
+}
+
+@mixin beforeOnHover($background) {
+   &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: $background;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 0.3s;
+   }
+   &:hover::before {
+      transform: scale(1);
+   }
+}

@@ -1,0 +1,113 @@
+main {
+   &.active {
+      left: 60px;
+      width: calc(100% - 60px);
+   }
+   height: 100%;
+   width: calc(100% - 300px);
+   position: relative;
+   top: 0;
+   left: 300px;
+   background-color: #18191a;
+   transition: 0.5s ease-out;
+   @media (max-width: 1199px) {
+      left: 0;
+      width: 100%;
+      &.active {
+         left: 0;
+         width: 100%;
+      }
+   }
+}
+
+@include header;
+
+.cards-wrapper {
+   width: 100%;
+   padding: 20px;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 20px;
+   @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+   }
+   @media (max-width: 575px) {
+      grid-template-columns: 1fr;
+      padding: 15px;
+      gap: 15px;
+   }
+   @include card();
+}
+
+.details {
+   padding: 0 20px 20px;
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   gap: 20px;
+   @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+   }
+   @media (max-width: 575px) {
+      padding: 0 15px 15px;
+   }
+   .header {
+      @include d-flex(space-between, center);
+      h2 {
+         padding: 3px 7px;
+         background-color: $primaryColor;
+         color: white;
+         border-radius: 5px;
+         font-weight: 600;
+         @media (max-width: 992px) {
+            font-size: 1.2rem;
+         }
+      }
+   }
+}
+.orders {
+   @include orders-customers();
+   display: grid;
+   grid-template-rows: auto 1fr;
+   gap: 2rem;
+   background-color: $componentBackground;
+   padding: 20px;
+   @media (max-width: 992px) {
+      overflow-x: auto;
+   }
+   @include table();
+}
+
+.customers {
+   @include orders-customers();
+   background-color: $componentBackground;
+   padding: 20px;
+   @include d-flex(null, null, column, 2rem);
+   .wrapper {
+      @include d-flex(null, null, column);
+   }
+   .customer {
+      padding: 7px 10px;
+      @include d-flex(flex-start, center, row, 2rem);
+      &:hover {
+         background-color: $black;
+      }
+      @media (min-width: 768px) and (max-width: 992px) {
+         gap: 1rem;
+      }
+   }
+   img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+   }
+   h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: white;
+   }
+   span {
+      font-size: 14px;
+      color: $textSecondary;
+   }
+}

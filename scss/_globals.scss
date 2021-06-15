@@ -1,0 +1,64 @@
+/* Google font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+$primaryColor: #03a9f4;
+$grey: #999;
+$black: #212223;
+$borderBottom: #727375;
+$componentBackground: #3a3b3c;
+$textSecondary: #b0b3b8;
+$scrollbar: #656768;
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   list-style: none;
+   text-decoration: none;
+   font-family: "Poppins", sans-serif;
+}
+a {
+   -webkit-tap-highlight-color: transparent;
+}
+body {
+   overflow-x: hidden;
+}
+
+@mixin Firefox-scrollbar {
+   scrollbar-width: thin;
+   scrollbar-color: $scrollbar transparent;
+}
+@mixin Chrome-scrollbar {
+   ::-webkit-scrollbar {
+      width: 6px;
+      &-track {
+         background-color: transparent;
+      }
+      &-thumb {
+         background: $scrollbar;
+         &:hover {
+            background-color: darken($scrollbar, 12);
+         }
+      }
+   }
+}
+
+@mixin scrollbar-customized {
+   @include Firefox-scrollbar();
+   @include Chrome-scrollbar();
+}
+
+@mixin d-flex($justify-content, $align-items, $direction: row, $gap: 0) {
+   display: flex;
+   justify-content: $justify-content;
+   align-items: $align-items;
+   flex-direction: $direction;
+   gap: $gap;
+}
+
+html {
+   @include Firefox-scrollbar();
+}
+::-webkit-scrollbar {
+   @include Chrome-scrollbar();
+}

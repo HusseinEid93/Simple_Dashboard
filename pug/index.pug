@@ -1,0 +1,113 @@
+include components
+include variables
+
+doctype html 
+html(lang="en")
+   head 
+      meta(charset="UTF-8")
+      meta(http-equiv="X-UA-Compatible" content="IE=edge")
+      meta(
+         name="viewport" 
+         content="width=device-width, initial-scale=1.0"
+      )
+      link(
+         rel="stylesheet" 
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"
+      )
+      link(rel="stylesheet", href="../css/index.css")
+      // Favicon 
+      link(
+         rel="shortcut icon" 
+         href="../media/icon.png"
+      )
+      script(src="../script.js" defer) 
+      title My Dashboard 
+
+   body 
+      .container
+         // Start the navigation menu  
+         .navigation
+            ul 
+               li 
+                  a(href="#") 
+                     i.icon.fas.fa-home
+                     h2.title Dashboard
+                     .close: i.fas.fa-times
+               - for(let i = 0; i < titles.length; i++)
+                  li
+                     a(href="#") 
+                        i.icon.fas(class=icons[i]) 
+                        span.title #{titles[i]}
+
+
+         // Start the overlay 
+         .overlay
+
+
+         main 
+            .header
+               .toggle
+                  - for(let i = 1; i <= 3; i++)
+                     span
+               form(onsubmit="return false;") 
+                  i.fas.fa-search
+                  input(
+                     type="text" 
+                     placeholder="Search Here"
+                  )
+               .user: img(src="../media/user.jpg")
+
+
+            .cards-wrapper
+               +card('1,042', 'Daily Views', 'fas fa-eye')
+               +card(
+                  '80', 
+                  'Sales', 
+                  'fas fa-shopping-cart'
+               )
+               +card('208', 'Comments', 'fas fa-comment')
+               +card(
+                  '$6,042', 
+                  'Earning', 
+                  'fas fa-dollar-sign'
+               )
+                  
+
+            .details    
+               .orders
+                  .header
+                     h2 Recent Orders
+                     a.btn(href="#") 
+                        span View All
+                        span Show Less 
+
+                  table
+                     thead 
+                        tr 
+                           each tableHead in ['Name', 'Price', 'Payment', 'Status'] 
+                              th #[span #{tableHead}] 
+                     tbody 
+                        - for(let i = 0; i < products.length; i++)
+                           tr(class=`${i >= 6 ? 'hide' : ''}`) 
+                              td #{products[i]} 
+                              td #{prices[i]}
+                              td #{payments[i]}
+                              td 
+                                 span.status(class=`${status[i].replace(" ", "").toLowerCase()}`) #{status[i]}
+
+               .customers
+                  .header
+                     h2 Recent Customers
+                  .wrapper 
+                     +customer(1, 'David', 'Italy')
+                     +customer(2, 'Muhammed', 'India')
+                     +customer(3, 'Amelia', 'France')
+                     +customer(4, 'Olivia', 'USA')
+                     +customer(5, 'Haruki', 'Japan')
+                     +customer(6, 'Ashraf', 'India')
+                     +customer(7, 'Zeinab', 'Malaysia')
+                     +customer(8, 'John', 'England')
+

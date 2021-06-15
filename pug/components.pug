@@ -1,0 +1,14 @@
+mixin card(numbers, cardName, icon)
+   .card 
+      div
+         .number= numbers 
+         .card__name= cardName 
+      .icon-box: i(class=icon)
+
+
+mixin customer(imgNumber, name, country)
+   .customer 
+      img(src=`../media/img${imgNumber}.jpg`)
+      .text 
+         h4= name  
+         span= country 
